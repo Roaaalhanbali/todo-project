@@ -3,23 +3,23 @@ var name = prompt("Enter your name:");
 var gender = prompt("Enter your gender (male/female):");
 var age = parseInt(prompt("Enter your age:"));
 
-
 if (age <= 0) {
   alert("Invalid age!");
 }
 
-
-var skipMessage = confirm("Do you want to skip the welcoming message?");
-
+var skipMessage = prompt("Do you want to skip the welcoming message? Enter 'Yes' or 'No'").toLowerCase();
+while (skipMessage !== "yes" && skipMessage !== "no") {
+  skipMessage = prompt("Invalid input. Please enter 'Yes' or 'No' to skip the welcoming message.").toLowerCase();
+}
 
 if (gender === "male") {
-  if (skipMessage) {
+  if (skipMessage === "no") {
     alert("Welcome, " + name);
   } else {
     alert("Welcome, Mr. " + name);
   }
 } else if (gender === "female") {
-  if (skipMessage) {
+  if (skipMessage === "no") {
     alert("Welcome, " + name);
   } else {
     alert("Welcome, Ms. " + name);
@@ -40,12 +40,12 @@ function askQuestion(question) {
 }
 
 
-var question1 = askQuestion("Question A: Do you like pizza?");
-var question2 = askQuestion("Question B: Have you traveled abroad?");
-var question3 = askQuestion("Question C: Do you enjoy hiking?");
+var question1 = askQuestion("Question 1: Do you like pizza?");
+var question2 = askQuestion("Question 2: Have you traveled abroad?");
+var question3 = askQuestion("Question 3: Do you enjoy hiking?");
 
 
-answers.push(questionA, questionB, questionC);
+answers.push(question1, question2, question3);
 
 
 console.log("Answers:");
