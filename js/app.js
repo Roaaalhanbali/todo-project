@@ -12,21 +12,18 @@ while (skipMessage !== "yes" && skipMessage !== "no") {
   skipMessage = prompt("Invalid input. Please enter 'Yes' or 'No' to skip the welcoming message.").toLowerCase();
 }
 
-if (gender === "male") {
-  if (skipMessage === "no") {
-    alert("Welcome, " + name);
-  } else {
-    alert("Welcome, Mr. " + name);
-  }
-} else if (gender === "female") {
-  if (skipMessage === "no") {
-    alert("Welcome, " + name);
-  } else {
-    alert("Welcome, Ms. " + name);
-  }
+if (skipMessage === "yes") {
+  // Skip the welcome message
 } else {
-  alert("Welcome, " + name);
+  if (gender === "male") {
+    alert("Welcome, Mr. " + name);
+  } else if (gender === "female") {
+    alert("Welcome, Ms. " + name);
+  } else {
+    alert("Welcome, " + name);
+  }
 }
+
 
 var answers = [];
 
