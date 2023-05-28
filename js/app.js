@@ -1,54 +1,85 @@
 
-var name = prompt("Enter your name:");
-var gender = prompt("Enter your gender (male/female):");
-var age = parseInt(prompt("Enter your age:"));
+"use strict";
 
-if (age <= 0) {
-  alert("Invalid age!");
-}
+// Promt the user to enter their name
+let userName = promptWithValidation("Please enter your name:")
+console.log(userName);
 
-var skipMessage = prompt("Do you want to skip the welcoming message? Enter 'Yes' or 'No'").toLowerCase();
-while (skipMessage !== "yes" && skipMessage !== "no") {
-  skipMessage = prompt("Invalid input. Please enter 'Yes' or 'No' to skip the welcoming message.").toLowerCase();
-}
+// Prompt the user to enter their gender
+let yourGender = promptWithValidation("Please enter your gender (male or female):");
 
-if (skipMessage === "yes") {
-  // Skip the welcome message
+// Validate the gender input
+if (yourGender === "male") {
+  console.log("Gender: Male");
+} else if (yourGender === "female") {
+  console.log("Gender: Female");
 } else {
-  if (gender === "male") {
-    alert("Welcome, Mr. " + name);
-  } else if (gender === "female") {
-    alert("Welcome, Ms. " + name);
+  console.log("Invalid gender input!");
+}
+
+// Prompt the user to enter their age
+let age = promptWithValidation("Please enter your age:");
+
+// Check if the age is less than or equal to zero
+if (age <= 0) {
+  alert("Invalid age! Age must be greater than zero.");
+}
+
+// Prompt the user to confirm skipping the welcoming message
+let skipMessage = confirm ("Do you want to skip the welcoming message")
+console.log (skipMessage);
+
+// Check if the user wants to skip the message
+if (!skipMessage) {
+
+// Customize the welcoming message based on the gender input
+if (yourGender === "male") {
+    alert("Welcome, Mr. " + userName + "!");
+  } else if (yourGender === "female") {
+    alert("Welcome, Ms. " + userName + "!");
   } else {
-    alert("Welcome, " + name);
+    alert("Welcome, " + userName + "!");
   }
+
 }
 
 
-var answers = [];
-
-
-function askQuestion(question) {
-  var answer = prompt(question + " (Yes/No):");
-  if (answer === "" || (answer !== "Yes" && answer !== "No")) {
-    answer = "invalid";
+// Function to prompt the user and handle empty input
+function promptWithValidation(message) {
+    let input = prompt(message);
+    
+    // If input is empty, consider it as "invalid"
+    if (input.trim() === "") {
+      input = "invalid";
+    }
+    
+    return input;
   }
-  return answer;
-}
+  
+  // Function to print the answers in the console
+  function printAnswers(answers) {
+    console.log("Answers:");
+    answers.forEach(function(answer, index) {
+      console.log((index + 1) + ". " + answer);
+    });
+  }
+  
+  // More questions
+  let theAnswers = [];
+  
+  // Prompt the user with additional questions
+  let question1 = promptWithValidation("Question 1: Do you like pizza? (Yes/No):");
+  theAnswers.push(question1);
+  
+  let question2 = promptWithValidation("Question 2: Have you traveled abroad? (Yes/No):");
+  theAnswers.push(question2);
+  
+  let question3 = promptWithValidation("Question 3: Do you enjoy hiking? (Yes/No):");
+  theAnswers.push(question3);
+  
+  // Print the answers
+  printAnswers(theAnswers);
 
-
-var question1 = askQuestion("Question 1: Do you like pizza?");
-var question2 = askQuestion("Question 2: Have you traveled abroad?");
-var question3 = askQuestion("Question 3: Do you enjoy hiking?");
-
-
-answers.push(question1, question2, question3);
-
-
-console.log("Answers:");
-for (var i = 0; i < answers.length; i++) {
-  console.log(answers[i]);
-}
 
 
 
